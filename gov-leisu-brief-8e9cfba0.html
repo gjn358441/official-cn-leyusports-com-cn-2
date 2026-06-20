@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷速 · 轻量导航页</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* ---- 顶部导航 ---- */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 20px;
+      border-bottom: 1px solid #e0e3e8;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.5px;
+      color: #1e3a5f;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #2c3e50;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1a5a8c;
+    }
+
+    /* ---- Hero 区 ---- */
+    .hero {
+      margin-bottom: 48px;
+      padding: 28px 0 12px;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #111827;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      max-width: 680px;
+      color: #374151;
+    }
+
+    .hero .highlight-link {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 24px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 40px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      text-decoration: none;
+      color: #1e3a5f;
+      font-size: 0.95rem;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .hero .highlight-link:hover {
+      background: #eef2f6;
+      border-color: #9aa9bb;
+    }
+
+    /* ---- 场景模块卡片 ---- */
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      color: #1f2937;
+      letter-spacing: 0.3px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e6ec;
+      border-radius: 16px;
+      padding: 24px 20px 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      transition: box-shadow 0.2s, transform 0.1s;
+    }
+
+    .card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: #1e293b;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-bottom: 14px;
+    }
+
+    .card .tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: #eef2f6;
+      padding: 2px 12px;
+      border-radius: 40px;
+      color: #2c3e50;
+    }
+
+    /* ---- 常见说明 / FAQ 摘要 ---- */
+    .faq-section {
+      background: #ffffff;
+      border: 1px solid #e2e6ec;
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      margin-bottom: 48px;
+    }
+
+    .faq-item {
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f2f5;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #1e293b;
+    }
+
+    .faq-item p {
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .faq-item a {
+      color: #1a5a8c;
+      text-decoration: none;
+      border-bottom: 1px dotted #9aa9bb;
+    }
+
+    .faq-item a:hover {
+      border-bottom-color: #1a5a8c;
+    }
+
+    /* ---- 页脚 ---- */
+    .footer {
+      border-top: 1px solid #e0e3e8;
+      padding: 24px 0 16px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    /* ---- 响应式 ---- */
+    @media (max-width: 820px) {
+      .cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 16px; }
+      .navbar { flex-direction: column; align-items: flex-start; }
+      .nav-links { flex-wrap: wrap; gap: 16px; }
+      .hero h1 { font-size: 1.6rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .faq-section { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- 导航 -->
+  <nav class="navbar">
+    <div class="logo-area">简明指南</div>
+    <div class="nav-links">
+      <a href="#">概览</a>
+      <a href="#">场景</a>
+      <a href="#">说明</a>
+    </div>
+  </nav>
+
+  <!-- Hero 简介 + 链接自然嵌入 -->
+  <div class="hero">
+    <h1>雷速 · 访问与使用指引</h1>
+    <p>
+      如果你正在寻找一种快速了解站点功能与定位的方式，这里提供了一份精要参考。
+      <strong>雷速</strong> 并非单一工具或平台，而是一组面向特定需求的轻量服务组合。
+      以下从三个典型应用场景展开说明，帮助你判断是否匹配自身需要。
+    </p>
+    <p style="margin-top: 8px;">
+      若希望直接访问主站，可由此前往 <a href="https://gov-leisu.com" class="highlight-link">雷速</a>。
+    </p>
+  </div>
+
+  <!-- 三个场景模块 -->
+  <h2 class="section-title">三个典型使用场景</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <h3>信息聚合与查阅</h3>
+      <p>将分散的公开数据按逻辑重组，提供结构化的阅览视图。适合需要快速过滤、对比关键条目的使用者。</p>
+      <span class="tag">聚合 · 结构化</span>
+    </div>
+    <div class="card">
+      <h3>轻量状态追踪</h3>
+      <p>基于有限字段构建动态摘要，用于关注事项的阶段性变化。不依赖复杂仪表盘，降低认知负荷。</p>
+      <span class="tag">追踪 · 摘要</span>
+    </div>
+    <div class="card">
+      <h3>定向检索辅助</h3>
+      <p>通过预设分类和关键词索引，缩小检索范围。适用于需要快速定位某类信息、减少手动筛选的场景。</p>
+      <span class="tag">检索 · 分类</span>
+    </div>
+  </div>
+
+  <!-- 常见说明（FAQ 摘要） -->
+  <div class="faq-section">
+    <h2 class="section-title" style="margin-bottom: 12px;">常见说明</h2>
+    <div class="faq-item">
+      <strong>内容更新频率如何？</strong>
+      <p>系统根据公开数据变化自动刷新，一般延迟在数分钟至数小时不等。具体时效性视数据源而定。</p>
+    </div>
+    <div class="faq-item">
+      <strong>是否需要注册或登录？</strong>
+      <p>当前页面及主站 <a href="https://gov-leisu.com">雷速</a> 大部分内容无需注册即可查阅。部分个性化功能可能要求临时标识。</p>
+    </div>
+    <div class="faq-item">
+      <strong>访问时遇到加载异常怎么办？</strong>
+      <p>建议先检查网络连接，或稍后重试。若持续无法访问，可尝试清除浏览器缓存或更换 DNS。</p>
+    </div>
+    <div class="faq-item">
+      <strong>是否提供移动端适配？</strong>
+      <p>是的，界面已针对手机与平板屏幕做响应式调整，核心阅读与导航功能均可在小屏设备上正常使用。</p>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    <p>内容仅供一般参考，不构成任何形式的承诺或建议。使用前请结合自身判断。</p>
+  </div>
+
+</div>
+</body>
+</html>
