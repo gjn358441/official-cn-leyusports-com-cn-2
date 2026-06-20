@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ued体育 · 从稳定入口开始</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f4f9fc;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #1d2b36;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* hero 横幅 — 杂志封面感 */
+    .hero {
+      background: linear-gradient(145deg, #0f2c3a 0%, #1a4b5e 70%, #2b6b7a 100%);
+      border-radius: 32px;
+      padding: 3.5rem 2.5rem;
+      margin-bottom: 3rem;
+      color: white;
+      box-shadow: 0 12px 28px rgba(0, 50, 60, 0.18);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(130, 210, 200, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 560px;
+      border-left: 4px solid #60c4b0;
+      padding-left: 1rem;
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 背景说明 —— 杂志里的“编者按” */
+    .background-note {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 6px 14px rgba(0, 40, 50, 0.04);
+      border: 1px solid #ddeef0;
+    }
+
+    .background-note h2 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #0f4e5a;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .background-note h2::before {
+      content: '◈';
+      color: #3baa9a;
+      font-size: 1.4rem;
+    }
+
+    .background-note p {
+      color: #2f4550;
+      margin-bottom: 0.75rem;
+    }
+
+    .background-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 三段自然介绍：网格卡片 */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 1.6rem 1.8rem;
+      box-shadow: 0 6px 16px rgba(25, 70, 80, 0.05);
+      transition: all 0.2s ease;
+      border: 1px solid #deedef;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px rgba(20, 90, 100, 0.08);
+      border-color: #9ad4cb;
+    }
+
+    .card .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #348f80;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 550;
+      color: #14434d;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+
+    .card p {
+      font-size: 0.98rem;
+      color: #2e4b57;
+      flex: 1;
+    }
+
+    .card .tag {
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      background: #e8f3f0;
+      color: #1b6d6a;
+      padding: 0.25rem 0.8rem;
+      border-radius: 40px;
+      display: inline-block;
+      width: fit-content;
+      font-weight: 450;
+    }
+
+    /* 页尾访问提示 —— 杂志底栏风格 */
+    .footer-prompt {
+      background: #ffffffdd;
+      backdrop-filter: blur(4px);
+      border-radius: 60px;
+      padding: 1.8rem 2.2rem;
+      text-align: center;
+      border: 1px solid #cee6e3;
+      box-shadow: 0 4px 12px rgba(40, 100, 100, 0.04);
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-prompt p {
+      font-size: 1.05rem;
+      color: #1e414b;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-prompt a {
+      color: #147a6b;
+      font-weight: 570;
+      text-decoration: none;
+      border-bottom: 2px solid #4db6a3;
+      padding-bottom: 0.08rem;
+      transition: border-color 0.2s;
+    }
+
+    .footer-prompt a:hover {
+      border-bottom-color: #1a5f55;
+      color: #0b5347;
+    }
+
+    /* 微 FAQ 摘要 */
+    .faq-snippet {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem 3rem;
+      margin: 2rem 0 0;
+      padding: 0.5rem 0 1rem;
+      border-top: 1px dashed #c5dbd8;
+    }
+
+    .faq-item {
+      font-size: 0.9rem;
+      color: #2c5560;
+    }
+
+    .faq-item strong {
+      color: #0a584d;
+      font-weight: 550;
+      margin-right: 0.4rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 860px) {
+      .cards-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.4rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 1.2rem 1rem;
+      }
+      .hero {
+        padding: 2rem 1.5rem;
+        border-radius: 24px;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero .sub {
+        font-size: 0.95rem;
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .background-note {
+        padding: 1.5rem;
+      }
+      .footer-prompt {
+        padding: 1.4rem 1.2rem;
+        border-radius: 40px;
+      }
+      .faq-snippet {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+      }
+    }
+
+    /* 小点缀 */
+    .spacer {
+      height: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- hero 横幅 -->
+  <header class="hero">
+    <h1>ued体育 · 在场边</h1>
+    <div class="sub">
+      从稳定的页面入口开始，每一次浏览都更踏实。<br>
+      杂志式的节奏，克制而清晰。
+    </div>
+  </header>
+
+  <!-- 背景说明 —— 为什么这个页面存在 -->
+  <section class="background-note">
+    <h2>关于这个页面</h2>
+    <p>
+      很多时候我们需要的不是铺天盖地的信息，而是一个清晰、稳定的起点。<strong>ued体育</strong>
+      的页面结构就是这样设计的——没有夸张的弹窗，没有令人困惑的跳转，只有自然而直接的导航方式。
+    </p>
+    <p>
+      无论你是在通勤路上、午休间隙，还是习惯用电脑慢慢翻阅，这个站点都尽量保持轻盈和一致。
+      下面三个卡片从不同侧面聊了聊它的特点。
+    </p>
+  </section>
+
+  <!-- 三段式自然介绍：网格卡片 -->
+  <div class="cards-grid">
+    <div class="card">
+      <div class="icon">📋</div>
+      <h3>一致的入口逻辑</h3>
+      <p>
+        每当进入页面，布局和导航都保持相似的节奏。你不必重新学习位置，也不容易误触无关链接。
+        这种稳定感，在日常使用中尤其重要。
+      </p>
+      <span class="tag">入口习惯</span>
+    </div>
+    <div class="card">
+      <div class="icon">🧭</div>
+      <h3>页面说明清晰</h3>
+      <p>
+        每个板块都有简单的标题或引导，不会让你在页面里迷失。无论浏览到哪个位置，
+        都能快速理解当前内容，并知道下一步可以做什么。
+      </p>
+      <span class="tag">导航语言</span>
+    </div>
+    <div class="card">
+      <div class="icon">📱</div>
+      <h3>多设备适应</h3>
+      <p>
+        从宽屏显示器到手机竖屏，页面自动调整字间距、卡片排列和按钮大小。
+        不需要放大或左右滑动，信息依然完整可读。
+      </p>
+      <span class="tag">响应式</span>
+    </div>
+  </div>
+
+  <!-- 页尾访问提示 — 自然嵌入链接 -->
+  <div class="footer-prompt">
+    <p>
+      如果你希望了解更完整的体验，可以前往
+      <a href="https://officials-uedsports.com">ued体育</a>
+      看一看。那里的页面结构同样保持着上面提到的几个特点，没有多余的装饰。
+    </p>
+    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 0.3rem;">
+      一个入口，一种节奏。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 —— 简洁的提问风格 -->
+  <div class="faq-snippet">
+    <div class="faq-item"><strong>❓ 页面会不会经常变动？</strong> 核心布局保持稳定。</div>
+    <div class="faq-item"><strong>❓ 手机上看效果如何？</strong> 已适配常用屏幕尺寸。</div>
+    <div class="faq-item"><strong>❓ 需要注册吗？</strong> 浏览页面不需要额外步骤。</div>
+  </div>
+
+  <!-- 极细底边，纯粹装饰 -->
+  <div style="height: 0.4rem;"></div>
+</div>
+</body>
+</html>
