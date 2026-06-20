@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>稳定入口 · V体育 介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #1d2a3a;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 780px;
+            width: 100%;
+        }
+
+        /* 卡片系统 */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.02);
+            padding: 2rem 2rem 2.2rem;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        /* 头部 / hero 区 */
+        .hero {
+            background: #ffffff;
+            border-radius: 30px;
+            padding: 2.4rem 2rem 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+        }
+
+        .hero h1 {
+            font-size: 2.1rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0f1a2b;
+            margin-bottom: 0.6rem;
+            line-height: 1.3;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #4a5b6f;
+            max-width: 600px;
+            border-left: 3px solid #b6c9dd;
+            padding-left: 1.2rem;
+            margin-top: 0.2rem;
+        }
+
+        /* 文章标题 */
+        .article-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #13212e;
+        }
+
+        .article-meta {
+            font-size: 0.85rem;
+            color: #6f7d8e;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.3px;
+        }
+
+        .article-meta span {
+            background: #eef2f6;
+            padding: 0.1rem 0.6rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+
+        .lead {
+            font-size: 1.08rem;
+            color: #1f2e3f;
+            padding: 0.8rem 0 0.2rem 0;
+            border-bottom: 1px dashed #d9e0e8;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .body-text {
+            margin-bottom: 1.4rem;
+            color: #263544;
+        }
+
+        .body-text p {
+            margin-bottom: 1.2rem;
+        }
+
+        .quote-block {
+            background: #f1f4fa;
+            border-radius: 18px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0;
+            border-left: 4px solid #6f8aa9;
+            font-style: normal;
+            color: #1f3347;
+            font-size: 0.98rem;
+        }
+
+        .quote-block strong {
+            font-weight: 600;
+            color: #0f1f31;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.4rem 0 0.4rem;
+        }
+
+        .feature-item {
+            background: #f6f9fd;
+            border-radius: 20px;
+            padding: 0.9rem 1.3rem;
+            flex: 1 1 180px;
+            border: 1px solid #e3e9f2;
+            color: #1b2b3f;
+            font-weight: 450;
+        }
+
+        .feature-item::before {
+            content: "·";
+            margin-right: 6px;
+            color: #58748d;
+            font-weight: 700;
+        }
+
+        .read-more-hint {
+            display: inline-block;
+            background: transparent;
+            border: 1px solid #d0dae6;
+            color: #2f4057;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-size: 0.88rem;
+            margin: 0.5rem 0 0.2rem;
+            transition: 0.2s;
+            cursor: default;
+        }
+
+        .read-more-hint:hover {
+            background: #eef2f8;
+            border-color: #b2c3d6;
+        }
+
+        .faq-mini {
+            margin-top: 1.8rem;
+        }
+
+        .faq-item {
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #e5eaef;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #13212e;
+            margin-bottom: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .faq-a {
+            color: #3c4e64;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            text-align: left;
+            color: #4c5e72;
+            font-size: 0.92rem;
+            border-top: 1px solid #dbe1ea;
+            padding-top: 1.6rem;
+        }
+
+        .footer-note a {
+            color: #1a3b58;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dotted #98aec9;
+        }
+
+        .footer-note a:hover {
+            border-bottom: 1px solid #0f1f32;
+        }
+
+        /* 响应式 */
+        @media (max-width: 580px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .card, .hero {
+                padding-left: 1.4rem;
+                padding-right: 1.4rem;
+            }
+
+            .feature-grid {
+                flex-direction: column;
+                gap: 0.7rem;
+            }
+
+            .feature-item {
+                flex: 1 1 auto;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .quote-block {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- hero 区 -->
+    <div class="hero">
+        <h1>V体育 · 稳定入口与页面说明</h1>
+        <div class="sub">从一个安静的页面开始，了解服务的轮廓与边界。</div>
+    </div>
+
+    <!-- 主卡片：博客式文章 -->
+    <div class="card">
+        <div class="article-title">关于「入口」的朴素理解</div>
+        <div class="article-meta"><span>阅读笔记</span> · 一篇简述</div>
+
+        <div class="lead">
+            很多人寻找的，其实不是复杂的功能列表，而是一个可以反复回来、不会迷失的页面。
+        </div>
+
+        <div class="body-text">
+            <p>在过去一段时间，我们注意到不少用户通过不同路径接触到 <a href="https://site-vtiyu.com" style="color:#1a3b58; text-decoration: underline; text-underline-offset: 2px; text-decoration-style: dotted;">V体育</a> 所提供的信息聚合与服务线索。但由于网络环境、链接更新或访问习惯的差异，有时会感到入口不够直接。</p>
+
+            <p>这个页面存在的理由很简单：作为一个稳定的示意点，把基础信息、常见疑问以及服务调性用平实的语言写下来。不做夸大，不设诱导，只是让感兴趣的人能多了解一点。</p>
+
+            <p>我们始终相信，一个平台的价值不在于它喊出的口号，而在于每一次打开页面时是否清晰、是否顺畅。与其堆叠功能列表，不如先说明“这里主要做什么”以及“适合什么样的人”。</p>
+        </div>
+
+        <!-- 引用 / 提示 -->
+        <div class="quote-block">
+            <strong>一个提示：</strong> 当你觉得信息过载或链接混乱时，不妨回到这个介绍页。它不会频繁变动，各项说明尽量保持克制与真实。稳定，本身就是一种效率。
+        </div>
+
+        <div class="body-text">
+            <p>从使用场景来说，无论是日常浏览、信息比对，还是偶尔需要回顾某个说明，一个简洁的页面都比复杂的面板更友好。所以这个页面的结构有意保持“博客式”——文章标题、导语、正文、引用提示，读起来不会有太多压迫感。</p>
+
+            <p>目前我们观察到的主要访问场景包括：通过收藏夹直接进入、从推荐帖跳转、或是希望确认服务范围。针对这些，下面整理了三条特征，方便快速建立印象：</p>
+
+            <div class="feature-grid">
+                <div class="feature-item">以信息整合为基础，不虚构数据</div>
+                <div class="feature-item">页面风格长期保持轻量、低干扰</div>
+                <div class="feature-item">入口链接稳定，减少无效跳转</div>
+            </div>
+
+            <p style="margin-top: 1.4rem;">当然，任何描述都无法替代亲自浏览。如果你恰好需要了解 <a href="https://site-vtiyu.com" style="color:#1a3b58; text-decoration: underline; text-underline-offset: 2px; text-decoration-style: dotted;">V体育</a> 的具体内容或最新动态，可以直接前往站点，页面里的信息会持续更新，但不会为了吸引点击而改变语气。</p>
+        </div>
+
+        <!-- 类似“访问句”，但仅作自然收束 -->
+        <div class="read-more-hint">⸻ 页面内容保持独立 · 无需额外跳转</div>
+    </div>
+
+    <!-- 第二张卡片：FAQ 摘要（轻量） -->
+    <div class="card">
+        <div class="article-title" style="font-size: 1.3rem; margin-bottom: 0.2rem;">一些简短问答</div>
+        <div class="article-meta" style="margin-bottom: 0.5rem;">基于常见询问整理，不涉及具体操作细节</div>
+
+        <div class="faq-mini">
+            <div class="faq-item">
+                <div class="faq-q">这个页面会频繁改动吗？</div>
+                <div class="faq-a">不会。它定位为介绍与稳定入口，只会在必要时做小幅补充，核心结构长期保留。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">页面上提到的“入口”具体指什么？</div>
+                <div class="faq-a">指通过 <a href="https://site-vtiyu.com" style="color:#1a3b58; text-decoration: underline; text-underline-offset: 2px; text-decoration-style: dotted;">V体育</a> 站点可以获得的持续访问路径，以及页面本身作为信息锚点的作用。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">是否包含任何形式的推广或诱导链接？</div>
+                <div class="faq-a">不包含。所有文字仅用于说明，不设置隐藏链接或强制跳转，a 标签仅指向主站且文本明确为“V体育”。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 尾部 -->
+    <div class="footer-note">
+        本页面为独立介绍页，内容由团队编写。如需了解完整服务，可访问 
+        <a href="https://site-vtiyu.com">V体育</a>。 
+        <span style="display: block; margin-top: 0.5rem; font-size: 0.85rem; color: #6c7f93;">保持简洁、真实、稳定 —— 这是页面存在的初衷。</span>
+    </div>
+
+</div>
+</body>
+</html>
